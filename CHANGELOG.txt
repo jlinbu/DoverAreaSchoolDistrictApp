@@ -1,0 +1,12 @@
+CHANGELOG
+
+This file covers the changes implemented in each commit and is a rolling journal for
+reflection/turn in dates of May 5th, 12th and 19th.
+
+For time/date stamps, please use this format: Wed, May 2nd, 2017
+
+BEGIN JOURNAL
+
+Wed, May 2nd, 2017
+ Android Projects started and CHANGELOG.txt file created. Current development team includes:
+   Eammonn, Brayden, Tyler
