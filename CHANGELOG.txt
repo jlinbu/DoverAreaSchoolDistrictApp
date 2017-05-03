@@ -1,0 +1,14 @@
+CHANGELOG
+
+This file covers the changes implemented in each commit and is a rolling journal for
+reflection/turn in dates of May 5th, 12th and 19th.
+
+"Each journal entry is worth 10 points and should catalog your experience of programming for that week. This is NOT a change log. This is a reflection on your development experience. Some examples of what to write about include: ● What challenges did you find while programming? ● Were there any bugs which hung up the development of your program? ● What was your biggest success this week? Journal entries should be a minimum of 1-2 paragraphs with ample detail."
+
+For time/date stamps, please use this format: Wed, May 2nd, 2017
+
+BEGIN JOURNAL
+
+Wed, May 2nd, 2017
+ Android Projects started and CHANGELOG.txt file created. Current development team includes:
+   Eammonn, Brayden, Tyler
