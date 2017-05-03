@@ -1,0 +1,23 @@
+CHANGELOG
+
+This is the file for Changelogs.
+
+Change Logs: Due on GitHub in a rolling changelog.txt file every Wednesday and Friday (May 5th, May 10th, May 12th and May 17th) 
+Change logs are worth 5 points each and should be a bulleted list of all changes to your application in this version. 
+Your version number should increment every Change Log entry. For example v0.0.1 -> v0.0.2 -> v0.0.3, etc. 
+Please keep a tab on all significant changes to your application. 
+Examples of things to include: 
+● Adding classes 
+● Adding functionality to the app 
+● Adding screens 
+● UI changes 
+● Major bug fixes (ie, fixed crash on loading screen) 
+● Minor bug fixes (Write as “Bug Fixes”)
+
+When creating a changelog, use this format : v0.0.1 - 5/3/17
+
+
+v0.0.1 - 5/3/17
+Project started. Organizational files created: 
+JOURNAL.txt
+CHANGELOG.txt
