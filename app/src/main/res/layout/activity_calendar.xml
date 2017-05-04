@@ -24,14 +24,12 @@
         android:text="Events"
         android:layout_below="@+id/calendarView" />
 
-    <LinearLayout
+    <ListView
         android:layout_width="match_parent"
         android:minHeight="100dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/events_list"
         android:layout_below="@+id/eventsLabel" >
-
-
-
-    </LinearLayout>
+    </ListView>
 </RelativeLayout>
