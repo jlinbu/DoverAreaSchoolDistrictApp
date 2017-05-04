@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="half_height">100dp</dimen>
+    <dimen name="events_label">20dp</dimen>
+    <dimen name="event_text_size">15dp</dimen>
+</resources>
