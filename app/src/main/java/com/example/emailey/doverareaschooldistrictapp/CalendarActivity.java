@@ -4,11 +4,9 @@ import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,13 +24,34 @@ public class CalendarActivity extends AppCompatActivity {
     private List<Event> eventsList = new ArrayList<Event>(); // This list holds all of the Calendar events
     private List<Event> currentEventsList = new ArrayList<Event>(); // This list holds all of the Calendar events for the currently selected date
     private Date selectedDate = Calendar.getInstance().getTime();
-
+    private Calendar calendar = Calendar.getInstance();
 
     private class onCalendarDateChanged implements CalendarView.OnDateChangeListener {
 
         @Override
         public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) { // This is called when the user selects a new date
             selectedDate = new Date(view.getDate()); // Sets the selectedDate variable to the date picked by the user.
+            currentEventsList.clear();
+            calendar.setTime(selectedDate);
+            int day = calendar.get(Calendar.DAY_OF_YEAR);
+
+            for(Event e : eventsList) {
+                calendar.setTime(e.getDate());
+                if(day == calendar.get(Calendar.DAY_OF_YEAR)) {
+                    currentEventsList.add(e);
+                }
+            }
+        }
+    }
+
+    private class dataSetObserver extends DataSetObserver {
+        @Override
+        public void onInvalidated() {
+            currentEventsList = new ArrayList<Event>();
+        }
+
+        @Override
+        public void onChanged() {
 
         }
     }
@@ -49,6 +68,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView.setOnDateChangeListener(new onCalendarDateChanged()); // Set the listener for when the user picks a new date
         eventsListView = (ListView) findViewById(R.id.events_list); // Get the list view for the Events
+
         eventsListView.setAdapter(new ListAdapter() { // Setting the list adapter for the Events List
             @Override
             public boolean areAllItemsEnabled() {
