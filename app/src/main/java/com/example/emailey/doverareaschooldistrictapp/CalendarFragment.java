@@ -1,9 +1,11 @@
 package com.example.emailey.doverareaschooldistrictapp;
 
+import android.app.Fragment;
 import android.database.DataSetObserver;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
@@ -16,7 +18,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class CalendarActivity extends AppCompatActivity {
+/**
+ * Created by tsengia on 5/5/2017.
+ */
+
+public class CalendarFragment extends Fragment {
 
     private CalendarView calendarView;
     private ListView eventsListView;
@@ -39,35 +45,23 @@ public class CalendarActivity extends AppCompatActivity {
                 calendar.setTime(e.getDate());
                 if(day == calendar.get(Calendar.DAY_OF_YEAR)) {
                     currentEventsList.add(e);
+                    Log.i("BLARG", "Match found");
                 }
             }
         }
     }
 
-    private class dataSetObserver extends DataSetObserver {
-        @Override
-        public void onInvalidated() {
-            currentEventsList = new ArrayList<Event>();
-        }
-
-        @Override
-        public void onChanged() {
-
-        }
-    }
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.activity_calendar, container, false);
 
         currentEventsList.add(new Event("Testing", Calendar.getInstance().getTime()));
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView); // Get the calendar view
+        calendarView = (CalendarView) root.findViewById(R.id.calendarView); // Get the calendar view
         calendarView.setDate(Calendar.getInstance().getTime().getTime()); // Set the calendar view to today's date
 
-        calendarView.setOnDateChangeListener(new onCalendarDateChanged()); // Set the listener for when the user picks a new date
-        eventsListView = (ListView) findViewById(R.id.events_list); // Get the list view for the Events
+        calendarView.setOnDateChangeListener(new CalendarFragment.onCalendarDateChanged()); // Set the listener for when the user picks a new date
+        eventsListView = (ListView) root.findViewById(R.id.events_list); // Get the list view for the Events
 
         eventsListView.setAdapter(new ListAdapter() { // Setting the list adapter for the Events List
             @Override
@@ -112,7 +106,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View root = getLayoutInflater().inflate(R.layout.event_bubble, parent, false);
+                View root = inflater.inflate(R.layout.event_bubble, parent, false);
                 ((TextView) root.findViewById(R.id.event_bubble_title)).setText(currentEventsList.get(position).getTitle());
                 return root;
             }
@@ -132,5 +126,6 @@ public class CalendarActivity extends AppCompatActivity {
                 return eventsList.size() == 0;
             }
         });
+        return root;
     }
 }
