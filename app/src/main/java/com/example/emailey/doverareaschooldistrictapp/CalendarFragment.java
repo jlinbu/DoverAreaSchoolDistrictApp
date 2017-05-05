@@ -13,6 +13,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,23 +35,29 @@ public class CalendarFragment extends Fragment {
     private List<Event> currentEventsList = new ArrayList<Event>(); // This list holds all of the Calendar events for the currently selected date
     private Date selectedDate = Calendar.getInstance().getTime();
     private Calendar calendar = Calendar.getInstance();
+    public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     private class onCalendarDateChanged implements CalendarView.OnDateChangeListener {
 
         @Override
         public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) { // This is called when the user selects a new date
-            selectedDate = new Date(view.getDate()); // Sets the selectedDate variable to the date picked by the user.
+            Calendar c = Calendar.getInstance(); // Here we are
+            c.set(Calendar.YEAR, year);
+            c.set(Calendar.MONTH, month);
+            c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            selectedDate = c.getTime();
+            Log.i("WASERDTF", DATE_FORMAT.format(selectedDate));
+
             currentEventsList.clear();
-            calendar.setTime(selectedDate);
-            int day = calendar.get(Calendar.DAY_OF_YEAR);
+            String date = DATE_FORMAT.format(selectedDate);
 
             for(Event e : eventsList) {
-                calendar.setTime(e.getDate());
-                if(day == calendar.get(Calendar.DAY_OF_YEAR)) {
+                if(date.equals(DATE_FORMAT.format(e.getDate()))) {
+                    Log.i("BORG", e.getTitle());
                     currentEventsList.add(e);
-                    Log.i("BLARG", "Match found");
                 }
             }
+            eventsListView.invalidate();
         }
     }
 
@@ -55,7 +65,7 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_calendar, container, false);
 
-        currentEventsList.add(new Event("Testing", Calendar.getInstance().getTime()));
+        eventsList.add(new Event("Testing", Calendar.getInstance().getTime()));
 
         calendarView = (CalendarView) root.findViewById(R.id.calendarView); // Get the calendar view
         calendarView.setDate(Calendar.getInstance().getTime().getTime()); // Set the calendar view to today's date
@@ -86,12 +96,12 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public int getCount() {
-                return eventsList.size();
+                return currentEventsList.size();
             }
 
             @Override
             public Object getItem(int position) {
-                return eventsList.get(position);
+                return currentEventsList.get(position);
             }
 
             @Override
@@ -108,6 +118,7 @@ public class CalendarFragment extends Fragment {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View root = inflater.inflate(R.layout.event_bubble, parent, false);
                 ((TextView) root.findViewById(R.id.event_bubble_title)).setText(currentEventsList.get(position).getTitle());
+                Log.i("RARG", "GETVIEW");
                 return root;
             }
 
@@ -118,12 +129,12 @@ public class CalendarFragment extends Fragment {
 
             @Override
             public int getViewTypeCount() {
-                return 0;
+                return 1;
             }
 
             @Override
             public boolean isEmpty() {
-                return eventsList.size() == 0;
+                return currentEventsList.size() == 0;
             }
         });
         return root;
