@@ -17,7 +17,8 @@ Wed, May 2nd, 2017
 Fri, May 5th, 2017 (Brayden)
  On Wednesday, we begun development of the Dover Area High School app. We started by deciding which features we should include in the
  final application, and listing these to be developed later. After deciding on features to implement, we began to work on our respective
- areas of the application. My job was to develop WebViews to display pages from the Dover Area School District website in the application. On Thursday, I didn't make much progress with this, as I was still attempting to learn how the WebViews worked and how to properly
+ areas of the application. My job was to develop WebViews to display pages from the Dover Area School District website in the application.
+ On Thursday, I didn't make much progress with this, as I was still attempting to learn how the WebViews worked and how to properly
  implement them into an application. However, on Friday, I was able to successfully create a working WebView for the District page. There
  is a bug, however, in which one of the elements of the web page overlaps with itself. This will have to be fixed soon, though I may be
  able to do this by having the WebView fill the entire page.
