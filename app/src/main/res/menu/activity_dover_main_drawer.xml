@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_home"
             android:title="Home"/>
         <item
             android:id="@+id/nav_calendar"
@@ -12,12 +12,12 @@
             android:title="Calendar"/>
         <item
             android:id="@+id/nav_lunch_menu"
-            android:icon="@drawable/ic_calendar"
-            android:title="Calendar"/>
+            android:icon="@drawable/ic_lunch_menu"
+            android:title="Lunch Menu"/>
         <item
             android:id="@+id/nav_skyward"
-            android:icon="@drawable/ic_calendar"
-            android:title="Calendar"/>
+            android:icon="@drawable/ic_skyward"
+            android:title="Skyward"/>
     </group>
 
 </menu>
