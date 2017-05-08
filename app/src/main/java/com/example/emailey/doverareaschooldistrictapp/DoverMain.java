@@ -3,6 +3,7 @@ package com.example.emailey.doverareaschooldistrictapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -78,7 +79,9 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_calendar) {
-
+            android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new CalendarFragment());
+            transaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
