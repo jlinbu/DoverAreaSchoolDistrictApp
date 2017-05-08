@@ -1,11 +1,8 @@
 package com.example.emailey.doverareaschooldistrictapp;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class DoverMain extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,8 +27,7 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -75,11 +72,11 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        ((ViewGroup) findViewById(R.id.content_dover_main)).removeAllViews(); // This line removes all child views from the main view; "refreshes" the UI.
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_calendar) {
-            android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new CalendarFragment());
             transaction.commit();
         }
