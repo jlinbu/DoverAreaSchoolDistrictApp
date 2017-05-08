@@ -35,7 +35,7 @@ public class CalendarFragment extends Fragment {
     private Calendar calendar = Calendar.getInstance();
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
-    public void checkForEvents() {
+    public void refreshViewEvents() {
         currentEventsList.clear();
         String date = DATE_FORMAT.format(selectedDate);
 
@@ -47,6 +47,10 @@ public class CalendarFragment extends Fragment {
         eventsListView.invalidateViews();
     }
 
+    public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
+
+    }
+
     private class onCalendarDateChanged implements CalendarView.OnDateChangeListener {
         @Override
         public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) { // This is called when the user selects a new date
@@ -55,7 +59,7 @@ public class CalendarFragment extends Fragment {
             c.set(Calendar.MONTH, month);
             c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             selectedDate = c.getTime();
-            checkForEvents();
+            refreshViewEvents();
         }
     }
 
@@ -129,6 +133,12 @@ public class CalendarFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        refreshDataEvents();
+    }
+
+    @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_calendar, container, false);
 
@@ -141,7 +151,7 @@ public class CalendarFragment extends Fragment {
         eventsListView = (ListView) root.findViewById(R.id.events_list); // Get the list view for the Events
         adapter = new EventAdapter(inflater);
         eventsListView.setAdapter(adapter);
-        checkForEvents();
+        refreshViewEvents();
         return root;
     }
 }
