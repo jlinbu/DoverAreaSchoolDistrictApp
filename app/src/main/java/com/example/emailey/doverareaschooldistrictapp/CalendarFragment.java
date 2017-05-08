@@ -140,7 +140,7 @@ public class CalendarFragment extends Fragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.activity_calendar, container, false);
+        View root = inflater.inflate(R.layout.calendar_fragment, container, false);
 
         eventsList.add(new Event("Testing", Calendar.getInstance().getTime())); // This is a sample event that is set to the current date.
 

@@ -5,4 +5,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="high_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1002</string>
+    <string name="intermediate_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1003</string>
+    <string name="district_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1001</string>
+    <string name="lieb_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1005</string>
+    <string name="dover_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1004</string>
+    <string name="northsalem_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1006</string>
+    <string name="weigelstown_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1007</string>
+
 </resources>
