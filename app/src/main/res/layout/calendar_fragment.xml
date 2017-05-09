@@ -5,14 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.emailey.doverareaschooldistrictapp.CalendarFragment">
+    tools:context="com.example.emailey.doverareaschooldistrictapp.CalendarFragment"
+    >
 
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"/>
+        android:background="@color/colorPrimary"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:minHeight="100dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/events_list"
+        android:layout_below="@+id/eventsLabel"
+        android:background="@color/white"
+        >
+    </ListView>
 
     <TextView
         android:id="@+id/eventsLabel"
@@ -22,14 +33,6 @@
         android:layout_weight="1"
         android:textSize="@dimen/events_label"
         android:text="Events"
-        android:layout_below="@+id/calendarView" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:minHeight="100dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/events_list"
-        android:layout_below="@+id/eventsLabel" >
-    </ListView>
+        android:layout_below="@+id/calendarView"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>
