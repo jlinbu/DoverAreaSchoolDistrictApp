@@ -74,7 +74,10 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
         ((ViewGroup) findViewById(R.id.content_dover_main)).removeAllViews(); // This line removes all child views from the main view; "refreshes" the UI.
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            // Navigate to the District Page WebView
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new DistrictPageFragment());
+            transaction.commit();
         } else if (id == R.id.nav_calendar) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new CalendarFragment());
