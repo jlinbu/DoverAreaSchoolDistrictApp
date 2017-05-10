@@ -16,11 +16,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="195dp"
-        android:layout_height="47dp"
+        android:layout_width="191dp"
+        android:layout_height="75dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/ic_menu_send"
-        android:layout_weight="0.56"/>
+        app:srcCompat="@drawable/dasd_logo"
+        />
 
     <TextView
         android:layout_width="match_parent"

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="567dp"
+        tools:layout_editor_absoluteX="428dp"
+        android:id="@+id/datePicker"
+        android:headerBackground="@color/colorPrimary"/>
+
+    <ListView
+        android:layout_width="387dp"
+        android:layout_height="469dp"
+        tools:layout_editor_absoluteY="674dp"
+        tools:layout_editor_absoluteX="413dp"
+        android:id="@+id/daily_events_list"/>
+
+    <ImageView
+        android:layout_width="768dp"
+        android:layout_height="562dp"
+        app:srcCompat="@drawable/dasd_logo"
+        android:id="@+id/imageView2"
+        tools:layout_editor_absoluteY="49dp"
+        tools:layout_editor_absoluteX="0dp"/>
+
+</android.support.constraint.ConstraintLayout>

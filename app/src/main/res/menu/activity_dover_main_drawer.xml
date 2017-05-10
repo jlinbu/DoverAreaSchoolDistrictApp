@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+        <item android:title="Menu"
+              android:id="@+id/nav_menu"/>
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_home_page"
             android:icon="@drawable/ic_home"
-            android:title="Home"/>
+            android:title="District Home Page"/>
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
