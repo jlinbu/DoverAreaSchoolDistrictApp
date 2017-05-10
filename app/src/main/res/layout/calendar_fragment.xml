@@ -12,7 +12,7 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:background="@color/colorPrimary"/>
+        />
 
     <ListView
         android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,16 @@ public class CalendarFragment extends Fragment {
     }
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
-
+        String url = getString(R.string.high_school_calendar);
+        try {
+            byte[] content = SimpleDownload.getUrl(url);
+            for(Byte b : content) {
+                Log.i("YAY",  Byte.toString(b));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//            Log.e("NOOOOOO", e.getMessage());
+        }
     }
 
     private class onCalendarDateChanged implements CalendarView.OnDateChangeListener {
