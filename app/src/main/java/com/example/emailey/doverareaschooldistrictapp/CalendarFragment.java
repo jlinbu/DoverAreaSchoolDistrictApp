@@ -2,6 +2,7 @@ package com.example.emailey.doverareaschooldistrictapp;
 
 import android.app.Fragment;
 import android.database.DataSetObserver;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -14,6 +15,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +33,8 @@ import java.util.List;
 /**
  * Created by tsengia on 5/5/2017.
  */
+
+
 
 public class CalendarFragment extends Fragment {
 
@@ -35,6 +47,68 @@ public class CalendarFragment extends Fragment {
     private Date selectedDate = Calendar.getInstance().getTime();
     private Calendar calendar = Calendar.getInstance();
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
+
+    private class CalendarUpdater extends AsyncTask<String, Integer, String> {
+        private String[] urls;
+
+        private byte[] readInputStream(InputStream in) throws IOException {
+            List<Byte> bytes = new ArrayList<Byte>();
+            byte b = 0;
+            while((b = (byte) in.read()) != -1) { // Assign b to the next byte until the next byte is -1, which means the end of the stream has been reached
+                bytes.add(b); // Add b to the list of bytes read
+            }
+            in.close(); // Close the InputStream
+            byte[] data = new byte[bytes.size()]; //Make a byte array that has jus enough size to hold all of the bytes we have read already
+            for(int i = 0; i < bytes.size(); i++) { // Iterate through the List and move each byte to our array
+                data[i] = bytes.get(i);
+            }
+            return data; // Return the array of bytes
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            File internalDirectory = getContext().getFilesDir();
+
+            for(String s : urls) {
+                String outputFileName = s.split("/")[s.split("/").length-1] + ".ics"; // Chop up the calendar by the slashes, and use the final section as the file name
+
+                try {
+                    URL url = new URL(s);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.connect();
+                    int response = conn.getResponseCode();
+                    InputStream in;
+                    OutputStream out = new FileOutputStream(outputFileName);
+
+                    if(response == HttpURLConnection.HTTP_OK) {
+                        int length = conn.getContentLength();
+                        in = conn.getInputStream();
+                        byte[] data = new byte[length];
+                        int bytesRead = 0;
+                        while((bytesRead = in.read(data)) != -1) {
+                            out.write(data);
+                        }
+                        out.close();
+                        in.close();
+                        conn.disconnect();
+                    }
+                    else {
+                        Log.e("CalendarFragment", "Failed to update ics file, HTTP Response code: " + Integer.toString(response));
+                    }
+                } catch (MalformedURLException e) { // If the URL is malformed
+                    e.printStackTrace();
+                } catch (IOException e) { // If URL.openConnection fails
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        public CalendarUpdater(String[] urls) {
+            this.urls = urls;
+        }
+    }
+
 
     public void refreshViewEvents() {
         currentEventsList.clear();
@@ -50,15 +124,9 @@ public class CalendarFragment extends Fragment {
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
         String url = getString(R.string.high_school_calendar);
-        try {
-            byte[] content = SimpleDownload.getUrl(url);
-            for(Byte b : content) {
-                Log.i("YAY",  Byte.toString(b));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-//            Log.e("NOOOOOO", e.getMessage());
-        }
+        String[] urls = new String[] {getString(R.string.high_school_calendar)};
+        CalendarUpdater updater = new CalendarUpdater(urls);
+        updater.execute();
     }
 
     private class onCalendarDateChanged implements CalendarView.OnDateChangeListener {
