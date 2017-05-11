@@ -20,6 +20,26 @@
             android:id="@+id/nav_skyward"
             android:icon="@drawable/ic_skyward"
             android:title="Skyward"/>
+        <item
+            android:id="@+id/nav_parents"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Parents and Students"/>
+        <item
+            android:id="@+id/nav_performing_arts"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Performing Arts"/>
+        <item
+            android:id="@+id/nav_athletics"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Athletics"/>
+        <item
+            android:id="@+id/nav_community"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Community"/>
+        <item
+            android:id="@+id/nav_schools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Schools"/>
     </group>
 
 </menu>
