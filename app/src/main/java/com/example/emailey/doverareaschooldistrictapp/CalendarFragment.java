@@ -15,6 +15,13 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import net.fortuna.ical4j.data.CalendarBuilder;
+import net.fortuna.ical4j.data.CalendarParser;
+import net.fortuna.ical4j.data.CalendarParserImpl;
+import net.fortuna.ical4j.data.ParserException;
+import net.fortuna.ical4j.model.Component;
+import net.fortuna.ical4j.model.Property;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,8 +40,6 @@ import java.util.List;
 /**
  * Created by tsengia on 5/5/2017.
  */
-
-
 
 public class CalendarFragment extends Fragment {
 
@@ -69,6 +74,7 @@ public class CalendarFragment extends Fragment {
         protected String doInBackground(String... params) {
             File internalDirectory = getContext().getFilesDir();
 
+
             for(String s : urls) {
                 String outputFileName = s.split("/")[s.split("/").length-1] + ".ics"; // Chop up the calendar by the slashes, and use the final section as the file name
 
@@ -78,19 +84,28 @@ public class CalendarFragment extends Fragment {
                     conn.connect();
                     int response = conn.getResponseCode();
                     InputStream in;
-                    OutputStream out = new FileOutputStream(outputFileName);
+                    File outputFile = new File(internalDirectory, outputFileName);
+                    OutputStream out = new FileOutputStream(outputFile);
 
                     if(response == HttpURLConnection.HTTP_OK) {
-                        int length = conn.getContentLength();
                         in = conn.getInputStream();
-                        byte[] data = new byte[length];
-                        int bytesRead = 0;
-                        while((bytesRead = in.read(data)) != -1) {
-                            out.write(data);
+                       /* int byteRead = 0;
+                        List<Integer> data = new ArrayList<Integer>();
+                        while((byteRead = in.read()) != -1) {
+                            data.add(byteRead);
+                            out.write(byteRead);
                         }
                         out.close();
                         in.close();
                         conn.disconnect();
+                        String content = "";
+                        for(int i : data) {
+                            content += (char) i;
+                        }*/
+                        CalendarBuilder builder = new CalendarBuilder();
+                        net.fortuna.ical4j.model.Calendar calendar = builder.build(in);
+
+
                     }
                     else {
                         Log.e("CalendarFragment", "Failed to update ics file, HTTP Response code: " + Integer.toString(response));
@@ -98,6 +113,8 @@ public class CalendarFragment extends Fragment {
                 } catch (MalformedURLException e) { // If the URL is malformed
                     e.printStackTrace();
                 } catch (IOException e) { // If URL.openConnection fails
+                    e.printStackTrace();
+                } catch (ParserException e) { // If the Calendar is parsed incorrectly
                     e.printStackTrace();
                 }
             }
