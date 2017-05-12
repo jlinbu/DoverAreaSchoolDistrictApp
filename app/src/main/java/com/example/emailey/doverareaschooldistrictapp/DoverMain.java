@@ -90,8 +90,27 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new LunchMenuFragment());
             transaction.commit();
+        } else if (id == R.id.nav_parents) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new ParentsStudentsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_performing_arts) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new PerformingArtsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_athletics) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new AthleticsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_community) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new CommunityFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_schools) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new SchoolsFragment());
+            transaction.commit();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
