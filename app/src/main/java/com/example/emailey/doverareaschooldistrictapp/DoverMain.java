@@ -86,9 +86,14 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new MenuFragment());
             transaction.commit();
+        } else if (id == R.id.nav_lunch_menu) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new LunchMenuFragment());
+            transaction.commit();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}}
+}
