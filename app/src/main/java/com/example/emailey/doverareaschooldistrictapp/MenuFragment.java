@@ -13,16 +13,11 @@ import android.webkit.WebView;
  */
 
 public class MenuFragment extends Fragment  {
-    public WebView fDistrictHomeView;
+    public WebView MenuWebView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View menu = inflater.inflate(R.layout.menu_fragment, container, false);
-        fDistrictHomeView = (WebView) menu.findViewById(R.id.fdistrictpagewebview);
-        fDistrictHomeView.loadUrl("http://www.doversd.org/");
 
-        //Enable Javascript
-        WebSettings webSettings = fDistrictHomeView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
 
         return menu;
 
