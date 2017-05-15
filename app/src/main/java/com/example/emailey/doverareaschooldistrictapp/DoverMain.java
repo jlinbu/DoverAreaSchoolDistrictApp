@@ -69,11 +69,11 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item){
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         ((ViewGroup) findViewById(R.id.content_dover_main)).removeAllViews(); // This line removes all child views from the main view; "refreshes" the UI.
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_home_page) {
             // Navigate to the District Page WebView
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new DistrictPageFragment());
@@ -82,8 +82,35 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new CalendarFragment());
             transaction.commit();
+        } else if (id == R.id.nav_menu) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new MenuFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_lunch_menu) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new LunchMenuFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_parents) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new ParentsStudentsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_performing_arts) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new PerformingArtsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_athletics) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new AthleticsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_community) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new CommunityFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_schools) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new SchoolsFragment());
+            transaction.commit();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

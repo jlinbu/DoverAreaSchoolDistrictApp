@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+        <item android:title="Menu"
+              android:id="@+id/nav_menu"/>
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_home_page"
             android:icon="@drawable/ic_home"
-            android:title="Home"/>
+            android:title="District Home Page"/>
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
@@ -18,6 +20,26 @@
             android:id="@+id/nav_skyward"
             android:icon="@drawable/ic_skyward"
             android:title="Skyward"/>
+        <item
+            android:id="@+id/nav_parents"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Parents and Students"/>
+        <item
+            android:id="@+id/nav_performing_arts"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Performing Arts"/>
+        <item
+            android:id="@+id/nav_athletics"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Athletics"/>
+        <item
+            android:id="@+id/nav_community"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Community"/>
+        <item
+            android:id="@+id/nav_schools"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Schools"/>
     </group>
 
 </menu>
