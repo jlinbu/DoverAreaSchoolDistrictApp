@@ -8,6 +8,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/may_lunch_menu_2017"
+        app:srcCompat="@drawable/ic_lunch_menu"
         android:id="@+id/nav_lunch_menu"/>
 </LinearLayout>
