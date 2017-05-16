@@ -14,28 +14,21 @@ import android.widget.CalendarView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.CalendarParser;
-import net.fortuna.ical4j.data.CalendarParserImpl;
-import net.fortuna.ical4j.data.ParserException;
-import net.fortuna.ical4j.model.Component;
-import net.fortuna.ical4j.model.Property;
-
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import biweekly.Biweekly;
+import biweekly.ICalendar;
+import biweekly.component.VEvent;
 
 /**
  * Created by tsengia on 5/5/2017.
@@ -46,6 +39,8 @@ public class CalendarFragment extends Fragment {
     private CalendarView calendarView;
     private ListView eventsListView;
     private EventAdapter adapter;
+
+    private boolean eventsLoaded = false;
 
     private List<Event> eventsList = new ArrayList<Event>(); // This list holds all of the Calendar events
     private List<Event> currentEventsList = new ArrayList<Event>(); // This list holds all of the Calendar events for the currently selected date
@@ -72,40 +67,27 @@ public class CalendarFragment extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
+            eventsList.clear();
             File internalDirectory = getContext().getFilesDir();
-
-
             for(String s : urls) {
                 String outputFileName = s.split("/")[s.split("/").length-1] + ".ics"; // Chop up the calendar by the slashes, and use the final section as the file name
-
                 try {
                     URL url = new URL(s);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.connect();
                     int response = conn.getResponseCode();
                     InputStream in;
-                    File outputFile = new File(internalDirectory, outputFileName);
-                    OutputStream out = new FileOutputStream(outputFile);
 
                     if(response == HttpURLConnection.HTTP_OK) {
                         in = conn.getInputStream();
-                       /* int byteRead = 0;
-                        List<Integer> data = new ArrayList<Integer>();
-                        while((byteRead = in.read()) != -1) {
-                            data.add(byteRead);
-                            out.write(byteRead);
+                        ICalendar iCal = Biweekly.parse(in).first();
+                        for(VEvent e : iCal.getEvents()) {
+                            Date start = new Date(e.getDateStart().getValue().getTime());
+                            Date end = new Date(e.getDateEnd().getValue().getTime());
+                            Event event = new Event(e.getSummary().getValue(), start);
+                            event.setEndDate(end);
+                            eventsList.add(event);
                         }
-                        out.close();
-                        in.close();
-                        conn.disconnect();
-                        String content = "";
-                        for(int i : data) {
-                            content += (char) i;
-                        }*/
-                        CalendarBuilder builder = new CalendarBuilder();
-                        net.fortuna.ical4j.model.Calendar calendar = builder.build(in);
-
-
                     }
                     else {
                         Log.e("CalendarFragment", "Failed to update ics file, HTTP Response code: " + Integer.toString(response));
@@ -114,11 +96,14 @@ public class CalendarFragment extends Fragment {
                     e.printStackTrace();
                 } catch (IOException e) { // If URL.openConnection fails
                     e.printStackTrace();
-                } catch (ParserException e) { // If the Calendar is parsed incorrectly
-                    e.printStackTrace();
                 }
             }
             return null;
+        }
+
+        @Override
+        public void onPostExecute(String result) {
+            refreshViewEvents();
         }
 
         public CalendarUpdater(String[] urls) {
@@ -136,12 +121,23 @@ public class CalendarFragment extends Fragment {
                 currentEventsList.add(e);
             }
         }
+
         eventsListView.invalidateViews();
     }
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
-        String url = getString(R.string.high_school_calendar);
-        String[] urls = new String[] {getString(R.string.high_school_calendar)};
+        eventsLoaded = false;
+        List<String> urlList = new ArrayList<String>();
+        urlList.add(getString(R.string.high_school_calendar));
+        urlList.add(getString(R.string.intermediate_school_calendar));
+        urlList.add(getString(R.string.dover_elementary_school_calendar));
+        urlList.add(getString(R.string.district_calendar));
+        urlList.add(getString(R.string.directors_calendar));
+
+        String[] urls = new String[urlList.size()];
+        for(int i = 0; i < urlList.size(); i++) {
+            urls[i] = urlList.get(i);
+        }
         CalendarUpdater updater = new CalendarUpdater(urls);
         updater.execute();
     }
@@ -236,8 +232,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.calendar_fragment, container, false);
-
-        eventsList.add(new Event("Testing", Calendar.getInstance().getTime())); // This is a sample event that is set to the current date.
 
         calendarView = (CalendarView) root.findViewById(R.id.calendarView); // Get the calendar view
         calendarView.setDate(Calendar.getInstance().getTime().getTime()); // Set the calendar view to today's date
