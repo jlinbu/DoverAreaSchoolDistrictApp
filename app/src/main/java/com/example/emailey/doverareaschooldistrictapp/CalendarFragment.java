@@ -2,6 +2,7 @@ package com.example.emailey.doverareaschooldistrictapp;
 
 import android.app.Fragment;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -51,20 +52,6 @@ public class CalendarFragment extends Fragment {
     private class CalendarUpdater extends AsyncTask<String, Integer, String> {
         private String[] urls;
 
-        private byte[] readInputStream(InputStream in) throws IOException {
-            List<Byte> bytes = new ArrayList<Byte>();
-            byte b = 0;
-            while((b = (byte) in.read()) != -1) { // Assign b to the next byte until the next byte is -1, which means the end of the stream has been reached
-                bytes.add(b); // Add b to the list of bytes read
-            }
-            in.close(); // Close the InputStream
-            byte[] data = new byte[bytes.size()]; //Make a byte array that has jus enough size to hold all of the bytes we have read already
-            for(int i = 0; i < bytes.size(); i++) { // Iterate through the List and move each byte to our array
-                data[i] = bytes.get(i);
-            }
-            return data; // Return the array of bytes
-        }
-
         @Override
         protected String doInBackground(String... params) {
             eventsList.clear();
@@ -86,6 +73,7 @@ public class CalendarFragment extends Fragment {
                             Date end = new Date(e.getDateEnd().getValue().getTime());
                             Event event = new Event(e.getSummary().getValue(), start);
                             event.setEndDate(end);
+                            event.setEventColor(CalendarManifest.manifest.get(s));
                             eventsList.add(event);
                         }
                     }
@@ -117,7 +105,10 @@ public class CalendarFragment extends Fragment {
         String date = DATE_FORMAT.format(selectedDate);
 
         for(Event e : eventsList) {
-            if(date.equals(DATE_FORMAT.format(e.getDate()))) {
+            if(date.equals(DATE_FORMAT.format(e.getDate())) || date.equals(DATE_FORMAT.format(e.getEndDate()))) {
+                currentEventsList.add(e);
+            }
+            else if(selectedDate.getTime() > e.getDate().getTime() && (selectedDate.getTime() < e.getEndDate().getTime())) {
                 currentEventsList.add(e);
             }
         }
@@ -127,16 +118,10 @@ public class CalendarFragment extends Fragment {
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
         eventsLoaded = false;
-        List<String> urlList = new ArrayList<String>();
-        urlList.add(getString(R.string.high_school_calendar));
-        urlList.add(getString(R.string.intermediate_school_calendar));
-        urlList.add(getString(R.string.dover_elementary_school_calendar));
-        urlList.add(getString(R.string.district_calendar));
-        urlList.add(getString(R.string.directors_calendar));
 
-        String[] urls = new String[urlList.size()];
-        for(int i = 0; i < urlList.size(); i++) {
-            urls[i] = urlList.get(i);
+        String[] urls = new String[CalendarManifest.manifest.size()];
+        for(int i = 0; i < CalendarManifest.manifest.size(); i++) {
+            urls[i] = (String) CalendarManifest.manifest.keySet().toArray()[i];
         }
         CalendarUpdater updater = new CalendarUpdater(urls);
         updater.execute();
@@ -200,6 +185,7 @@ public class CalendarFragment extends Fragment {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View root = inflater.inflate(R.layout.event_bubble, parent, false);
                 ((TextView) root.findViewById(R.id.event_bubble_title)).setText(currentEventsList.get(position).getTitle());
+                root.setBackgroundColor(currentEventsList.get(position).getEventColor());
                 return root;
             }
 
@@ -232,6 +218,16 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.calendar_fragment, container, false);
+
+        CalendarManifest.manifest.clear();
+        CalendarManifest.manifest.put(getString(R.string.district_calendar), Color.RED);
+        CalendarManifest.manifest.put(getString(R.string.high_school_calendar), Color.BLACK);
+        CalendarManifest.manifest.put(getString(R.string.intermediate_school_calendar), Color.DKGRAY);
+        CalendarManifest.manifest.put(getString(R.string.directors_calendar), Color.GRAY);
+        CalendarManifest.manifest.put(getString(R.string.lieb_elementary_school_calendar), Color.BLUE);
+        CalendarManifest.manifest.put(getString(R.string.weigelstown_elementary_school_calendar), Color.rgb(0, 150, 0));
+        CalendarManifest.manifest.put(getString(R.string.northsalem_elementary_school_calendar), Color.rgb(117, 75, 13));
+        CalendarManifest.manifest.put(getString(R.string.dover_elementary_school_calendar), Color.MAGENTA);
 
         calendarView = (CalendarView) root.findViewById(R.id.calendarView); // Get the calendar view
         calendarView.setDate(Calendar.getInstance().getTime().getTime()); // Set the calendar view to today's date
