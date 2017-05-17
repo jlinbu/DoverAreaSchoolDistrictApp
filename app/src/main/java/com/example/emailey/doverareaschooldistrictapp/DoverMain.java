@@ -78,7 +78,6 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
         int id = item.getItemId();
         ((ViewGroup) findViewById(R.id.content_dover_main)).removeAllViews(); // This line removes all child views from the main view; "refreshes" the UI.
         if (id == R.id.nav_home_page) {
-            // Navigate to the District Page WebView
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new DistrictPageFragment());
             transaction.commit();
@@ -113,6 +112,10 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
         } else if (id == R.id.nav_schools) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.add(R.id.content_dover_main, new SchoolsFragment());
+            transaction.commit();
+        } else if (id == R.id.nav_skyward) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.add(R.id.content_dover_main, new SkywardFragment());
             transaction.commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
