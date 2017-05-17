@@ -13,5 +13,5 @@
     <string name="dover_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1004</string>
     <string name="northsalem_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1006</string>
     <string name="weigelstown_elementary_school_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1007</string>
-
+    <string name="directors_calendar" >http://www.doversd.org/Core/FoxbrightCalendars/Feed/1008</string>
 </resources>

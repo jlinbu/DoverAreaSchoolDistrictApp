@@ -10,5 +10,6 @@
         android:layout_height="wrap_content"
         android:text="Event"
         android:textColor="#FFF"
-        android:textSize="@dimen/event_text_size"/>
+        android:textSize="@dimen/event_text_size"
+        android:layout_marginLeft="15dp"/>
 </LinearLayout>
