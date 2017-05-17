@@ -50,16 +50,13 @@ public class CalendarFragment extends Fragment {
     public final static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     private class CalendarUpdater extends AsyncTask<String, Integer, String> {
-        private String[] urls;
 
         @Override
         protected String doInBackground(String... params) {
             eventsList.clear();
-            File internalDirectory = getContext().getFilesDir();
-            for(String s : urls) {
-                String outputFileName = s.split("/")[s.split("/").length-1] + ".ics"; // Chop up the calendar by the slashes, and use the final section as the file name
-                try {
-                    URL url = new URL(s);
+            for(CalendarInfo c : CalendarManifest.manifest) {
+              try {
+                    URL url = new URL(c.getUrl());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.connect();
                     int response = conn.getResponseCode();
@@ -71,9 +68,9 @@ public class CalendarFragment extends Fragment {
                         for(VEvent e : iCal.getEvents()) {
                             Date start = new Date(e.getDateStart().getValue().getTime());
                             Date end = new Date(e.getDateEnd().getValue().getTime());
-                            Event event = new Event(e.getSummary().getValue(), start);
+                            Event event = new Event(c.getName() + ": " + e.getSummary().getValue(), start);
                             event.setEndDate(end);
-                            event.setEventColor(CalendarManifest.manifest.get(s));
+                            event.setEventColor(c.getCalendarColor());
                             eventsList.add(event);
                         }
                     }
@@ -94,9 +91,6 @@ public class CalendarFragment extends Fragment {
             refreshViewEvents();
         }
 
-        public CalendarUpdater(String[] urls) {
-            this.urls = urls;
-        }
     }
 
 
@@ -105,7 +99,7 @@ public class CalendarFragment extends Fragment {
         String date = DATE_FORMAT.format(selectedDate);
 
         for(Event e : eventsList) {
-            if(date.equals(DATE_FORMAT.format(e.getDate())) || date.equals(DATE_FORMAT.format(e.getEndDate()))) {
+            if(date.equals(DATE_FORMAT.format(e.getDate()))) {
                 currentEventsList.add(e);
             }
             else if(selectedDate.getTime() > e.getDate().getTime() && (selectedDate.getTime() < e.getEndDate().getTime())) {
@@ -118,12 +112,7 @@ public class CalendarFragment extends Fragment {
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
         eventsLoaded = false;
-
-        String[] urls = new String[CalendarManifest.manifest.size()];
-        for(int i = 0; i < CalendarManifest.manifest.size(); i++) {
-            urls[i] = (String) CalendarManifest.manifest.keySet().toArray()[i];
-        }
-        CalendarUpdater updater = new CalendarUpdater(urls);
+        CalendarUpdater updater = new CalendarUpdater();
         updater.execute();
     }
 
@@ -220,14 +209,14 @@ public class CalendarFragment extends Fragment {
         View root = inflater.inflate(R.layout.calendar_fragment, container, false);
 
         CalendarManifest.manifest.clear();
-        CalendarManifest.manifest.put(getString(R.string.district_calendar), Color.RED);
-        CalendarManifest.manifest.put(getString(R.string.high_school_calendar), Color.BLACK);
-        CalendarManifest.manifest.put(getString(R.string.intermediate_school_calendar), Color.DKGRAY);
-        CalendarManifest.manifest.put(getString(R.string.directors_calendar), Color.GRAY);
-        CalendarManifest.manifest.put(getString(R.string.lieb_elementary_school_calendar), Color.BLUE);
-        CalendarManifest.manifest.put(getString(R.string.weigelstown_elementary_school_calendar), Color.rgb(0, 150, 0));
-        CalendarManifest.manifest.put(getString(R.string.northsalem_elementary_school_calendar), Color.rgb(117, 75, 13));
-        CalendarManifest.manifest.put(getString(R.string.dover_elementary_school_calendar), Color.MAGENTA);
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.district_calendar), Color.RED, "District Calendar"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.high_school_calendar), Color.BLACK, "High School"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.intermediate_school_calendar), Color.DKGRAY, "Intermediate School"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.directors_calendar), Color.GRAY, "Director's Calendar"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.lieb_elementary_school_calendar), Color.BLUE, "Lieb Elementary"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.weigelstown_elementary_school_calendar), Color.rgb(0, 150, 0), "Weigelstown Elementary"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.northsalem_elementary_school_calendar), Color.rgb(117, 75, 13), "North Salem Elementary"));
+        CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.dover_elementary_school_calendar), Color.MAGENTA, "Dover Elementary"));
 
         calendarView = (CalendarView) root.findViewById(R.id.calendarView); // Get the calendar view
         calendarView.setDate(Calendar.getInstance().getTime().getTime()); // Set the calendar view to today's date

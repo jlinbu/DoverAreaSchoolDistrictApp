@@ -34,4 +34,10 @@ public class CalendarInfo {
     public void setName(String name) {
         this.name = name;
     }
+
+    public CalendarInfo(String url, int color, String name) {
+        this.name = name;
+        this.url = url;
+        this.calendarColor = color;
+    }
 }
