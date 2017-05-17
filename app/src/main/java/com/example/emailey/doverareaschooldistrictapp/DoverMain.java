@@ -33,6 +33,10 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.content_dover_main, new MenuFragment());
+        transaction.commit();
     }
 
     @Override

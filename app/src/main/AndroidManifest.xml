@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DoverMain"
+            android:screenOrientation="sensorPortrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
