@@ -28,5 +28,6 @@ dependencies {
     compile 'com.android.support:design:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
-    compile 'org.mnode.ical4j:ical4j:2.0.0'
+    compile 'net.sf.biweekly:biweekly:0.6.1'
+    compile 'com.roomorama:caldroid:3.0.1'
 }

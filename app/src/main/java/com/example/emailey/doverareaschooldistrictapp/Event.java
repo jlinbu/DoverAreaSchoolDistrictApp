@@ -1,5 +1,7 @@
 package com.example.emailey.doverareaschooldistrictapp;
 
+import android.graphics.Color;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,10 +12,20 @@ import java.util.Date;
 class Event {
     private String title = "Default Name";
     private Date date = Calendar.getInstance().getTime();
+    private Date endDate;
     private String description = "This is an example description for a calendar event.";
+    private int eventColor = Color.RED;
 
     public String getTitle() {
         return title;
+    }
+
+    public int getEventColor() {
+        return eventColor;
+    }
+
+    public void setEventColor(int color) {
+        this.eventColor = color;
     }
 
     public void setTitle(String title) {
@@ -34,6 +46,14 @@ class Event {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Date getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(Date ending) {
+        this.endDate = ending;
     }
 
     public Event(String title, Date date) {
