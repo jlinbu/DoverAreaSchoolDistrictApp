@@ -25,7 +25,7 @@ public class LunchMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.lunch_menu_fragment, container, false);
         fLunchWebView = (WebView) v.findViewById(R.id.flunchmenuwebview);
-        fLunchWebView.loadUrl("http://www.doversd.org/downloads/food_service_and_transportation/may_912_lunch_menu.pdf");
+        fLunchWebView.loadUrl("http://www.doversd.org/parentsstudents/");
 
         // Enable Javascript
         WebSettings webSettings = fLunchWebView.getSettings();
