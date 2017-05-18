@@ -15,13 +15,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="49dp"/>
 
-    <ListView
-        android:layout_width="387dp"
-        android:layout_height="469dp"
-        android:id="@+id/daily_events_list"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentEnd="true"/>
-
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,5 +22,12 @@
         android:headerBackground="@color/colorPrimary"
         android:layout_below="@+id/imageView2"
         android:layout_alignEnd="@+id/imageView2"/>
+
+    <ListView
+        android:layout_width="387dp"
+        android:layout_height="469dp"
+        android:id="@+id/daily_events_list"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
