@@ -14,8 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.CalendarView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -40,8 +40,7 @@ public class CalendarFragment extends Fragment {
     private CalendarView calendarView;
     private ListView eventsListView;
     private EventAdapter adapter;
-
-    private boolean eventsLoaded = false;
+    private ProgressBar mProgressBar;
 
     private List<Event> eventsList = new ArrayList<Event>(); // This list holds all of the Calendar events
     private List<Event> currentEventsList = new ArrayList<Event>(); // This list holds all of the Calendar events for the currently selected date
@@ -88,17 +87,19 @@ public class CalendarFragment extends Fragment {
 
         @Override
         public void onPostExecute(String result) {
+            mProgressBar.setVisibility(View.GONE);
+            eventsListView.setVisibility(View.VISIBLE);
             refreshViewEvents();
         }
 
     }
 
-
     public void refreshViewEvents() {
         currentEventsList.clear();
         String date = DATE_FORMAT.format(selectedDate);
 
-        for(Event e : eventsList) {
+        for(int i = 0; i < eventsList.size(); i++) {
+            Event e = eventsList.get(i);
             if(date.equals(DATE_FORMAT.format(e.getDate()))) {
                 currentEventsList.add(e);
             }
@@ -111,7 +112,6 @@ public class CalendarFragment extends Fragment {
     }
 
     public void refreshDataEvents() { // This method will use the iCal4J library to refresh the list of events we have.
-        eventsLoaded = false;
         CalendarUpdater updater = new CalendarUpdater();
         updater.execute();
     }
@@ -225,6 +225,8 @@ public class CalendarFragment extends Fragment {
         eventsListView = (ListView) root.findViewById(R.id.events_list); // Get the list view for the Events
         adapter = new EventAdapter(inflater);
         eventsListView.setAdapter(adapter);
+
+        mProgressBar = (ProgressBar) root.findViewById(R.id.marker_progress);
         refreshViewEvents();
         return root;
     }

@@ -22,8 +22,15 @@
         android:id="@+id/events_list"
         android:layout_below="@+id/eventsLabel"
         android:background="@color/white"
+        android:visibility="gone"
         >
     </ListView>
+
+    <ProgressBar android:indeterminate="true"
+                 android:layout_width="50dp" android:layout_height="50dp"
+                 android:id="@+id/marker_progress" style="?android:attr/progressBarStyle"
+                 android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_below="@id/eventsLabel"/>
 
     <TextView
         android:id="@+id/eventsLabel"
