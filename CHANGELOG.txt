@@ -8,7 +8,8 @@ Your version number should increment every Change Log entry. For example v0.0.1 
 Please keep a tab on all significant changes to your application. 
 Examples of things to include: 
 ● Adding classes 
-● Adding functionality to the app 
+● Adding functionality to the 
+appapp 
 ● Adding screens 
 ● UI changes 
 ● Major bug fixes (ie, fixed crash on loading screen) 
@@ -28,3 +29,9 @@ Currently has a webview for the Home page that displays the district's home page
 Have a non-functional Calendar that can be viewed.
 UI is themed to Dover colors and icons.
 Have additional WebViews for viewing other tabs/sections on the district website.
+v0.0.3 - 5/18/17
+CalendarFragment is completed, displays events pulled from the District webpage
+Events are color coded to each school/iCalendar that they correspond to
+UI is complete
+Half working lunch menu, doesn't automatically update, but does display
+Multiple Webviews to browse the district website and it's various tabs
