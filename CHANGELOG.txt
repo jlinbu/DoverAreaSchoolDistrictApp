@@ -29,9 +29,14 @@ Currently has a webview for the Home page that displays the district's home page
 Have a non-functional Calendar that can be viewed.
 UI is themed to Dover colors and icons.
 Have additional WebViews for viewing other tabs/sections on the district website.
-v0.0.3 - 5/18/17
+
+v0.0.3 - 5/17/17
 CalendarFragment is completed, displays events pulled from the District webpage
 Events are color coded to each school/iCalendar that they correspond to
 UI is complete
 Half working lunch menu, doesn't automatically update, but does display
 Multiple Webviews to browse the district website and it's various tabs
+
+v0.0.4 - 5/19/17
+CalendarFragment is complete with a progress bar to wait until all iCalendars are loaded before displaying events.
+Lunch menu is fixed, earlier stream was missing the image file from the git repository.
