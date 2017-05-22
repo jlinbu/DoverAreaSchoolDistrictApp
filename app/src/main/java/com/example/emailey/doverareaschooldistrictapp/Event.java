@@ -7,14 +7,16 @@ import java.util.Date;
 
 /**
  * Created by tsengia on 5/4/2017.
+ * This class holds all of the information that is needed by a calendar event.
+ * Each event has a start date, end date, color, description, and a title.
  */
 
 class Event {
     private String title = "Default Name";
-    private Date date = Calendar.getInstance().getTime();
-    private Date endDate;
+    private Date date = Calendar.getInstance().getTime(); // The "date" field is actually the start date of the event
+    private Date endDate; //ending date of the event
     private String description = "This is an example description for a calendar event.";
-    private int eventColor = Color.RED;
+    private int eventColor = Color.RED; // This will be the background color of the event bubble when viewed on the calendar
 
     public String getTitle() {
         return title;
@@ -56,7 +58,7 @@ class Event {
         this.endDate = ending;
     }
 
-    public Event(String title, Date date) {
+    public Event(String title, Date date) { // Title and starting date is needed in this constructor
         this.title = title;
         this.date = date;
     }
