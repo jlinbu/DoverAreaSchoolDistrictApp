@@ -24,6 +24,7 @@ public class CommunityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.community_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fCommunityWebView = (WebView) v.findViewById(R.id.fcommunityfragment);
         fCommunityWebView.loadUrl("http://www.doversd.org/community/");
 

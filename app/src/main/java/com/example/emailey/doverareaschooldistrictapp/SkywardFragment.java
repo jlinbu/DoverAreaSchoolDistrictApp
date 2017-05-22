@@ -24,6 +24,7 @@ public class SkywardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.skyward_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fSkywardWebView = (WebView) v.findViewById(R.id.fskywardwebview);
         fSkywardWebView.loadUrl("https://skyward.iscorp.com/scripts/wsisa.dll/WService=wsedudoverpa/seplog01.w");
 

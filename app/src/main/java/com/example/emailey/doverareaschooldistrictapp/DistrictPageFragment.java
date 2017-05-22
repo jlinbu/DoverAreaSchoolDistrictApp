@@ -24,6 +24,7 @@ public class DistrictPageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.district_page_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fDistrictWebView = (WebView) v.findViewById(R.id.fdistrictpagewebview);
         fDistrictWebView.loadUrl("http://www.doversd.org/district/");
 

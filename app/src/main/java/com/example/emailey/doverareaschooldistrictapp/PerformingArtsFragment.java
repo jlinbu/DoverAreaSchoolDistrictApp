@@ -24,6 +24,7 @@ public class PerformingArtsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.performing_arts_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fPerformingArtsWebView = (WebView) v.findViewById(R.id.fperformingartswebview);
         fPerformingArtsWebView.loadUrl("http://www.doversd.org/performing-arts/");
 

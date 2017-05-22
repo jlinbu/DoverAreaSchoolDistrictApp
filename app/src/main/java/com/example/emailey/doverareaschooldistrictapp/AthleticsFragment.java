@@ -24,6 +24,7 @@ public class AthleticsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.athletics_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fAthleticsWebView = (WebView) v.findViewById(R.id.fathleticswebview);
         fAthleticsWebView.loadUrl("http://www.doversd.org/athletics/");
 

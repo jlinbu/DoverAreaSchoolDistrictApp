@@ -25,6 +25,7 @@ public class ParentsStudentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.parents_students_fragment, container, false);
+        // Initialize and load the WebView to the desired page
         fParentsStudentsWebView = (WebView) v.findViewById(R.id.fparentsstudentswebview);
         fParentsStudentsWebView.loadUrl("http://www.doversd.org/parentsstudents/");
 
