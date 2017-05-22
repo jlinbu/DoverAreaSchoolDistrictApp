@@ -14,7 +14,7 @@ import android.webkit.WebView;
 
 public class MenuFragment extends Fragment  {
     public WebView MenuWebView;
-
+//Launches Menu view into window
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View menu = inflater.inflate(R.layout.menu_fragment, container, false);
 
