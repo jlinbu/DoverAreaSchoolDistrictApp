@@ -129,7 +129,11 @@ public class CalendarFragment extends Fragment {
     }
 
     private class EventAdapter extends BaseAdapter implements ListAdapter { // Setting the list adapter for the Events List
-        private LayoutInflater inflater;
+        private LayoutInflater inflater
+            
+            /* There are many empty methods below, they are just there to satisfy the ListAdapter interface
+             * 
+             */
             @Override
             public boolean areAllItemsEnabled() {
                 return false;
@@ -151,7 +155,7 @@ public class CalendarFragment extends Fragment {
             }
 
             @Override
-            public int getCount() {
+            public int getCount() { // This method is needed or else a NullPointer Exception will be thrown
                 return currentEventsList.size();
             }
 
@@ -189,7 +193,7 @@ public class CalendarFragment extends Fragment {
             }
 
             @Override
-            public boolean isEmpty() {
+            public boolean isEmpty() { // This method is needer or else a NullPointerException will be thrown
                 return currentEventsList.size() == 0;
             }
 
