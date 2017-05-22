@@ -19,7 +19,7 @@ import android.widget.Toast;
  */
 
 public class LunchMenuFragment extends Fragment {
-
+//Puts Lunch Menu View into app window
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.lunch_menu_fragment, container, false);
 
