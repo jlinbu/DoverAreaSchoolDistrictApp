@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Created by tsengia on 5/16/2017.
+ * This CalendarManifest class is designed to hold a list of CalendarInfo objects. This way there is a central location for all
+ * CalendarInfo objects. There are no getters and setters, only a public static List field named "manifest".
  */
 
 public class CalendarManifest {

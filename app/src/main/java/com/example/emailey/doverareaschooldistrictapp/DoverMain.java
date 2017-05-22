@@ -18,7 +18,7 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
     private final String TAG = this.getClass().getName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+//Standard on Create. Establishes Drawer and launches Menu Fragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dover_main);
         Log.i(TAG, "onCreate");
@@ -40,6 +40,7 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
     }
 
     @Override
+    //closes Drawer if Back is pressed
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -73,6 +74,7 @@ public class DoverMain extends AppCompatActivity implements NavigationView.OnNav
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
+    //Whenever a new Tab in the Nav Drawer is selected, that Fragment populates the view.
     public boolean onNavigationItemSelected(MenuItem item){
         // Handle navigation view item clicks here.
         int id = item.getItemId();
