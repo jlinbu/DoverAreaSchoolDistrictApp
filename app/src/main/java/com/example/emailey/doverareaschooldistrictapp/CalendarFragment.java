@@ -35,6 +35,8 @@ import biweekly.component.VEvent;
  * Created by tsengia on 5/5/2017.
  */
 
+ // oh boy im ready
+
 public class CalendarFragment extends Fragment {
 
     private CalendarView calendarView;
@@ -129,7 +131,7 @@ public class CalendarFragment extends Fragment {
     }
 
     private class EventAdapter extends BaseAdapter implements ListAdapter { // Setting the list adapter for the Events List
-        private LayoutInflater inflater
+        private LayoutInflater inflater;
             
             /* There are many empty methods below, they are just there to satisfy the ListAdapter interface
              * 

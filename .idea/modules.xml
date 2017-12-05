@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DoverApp.iml" filepath="$PROJECT_DIR$/DoverApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/DoverAreaSchoolDistrictApp.iml" filepath="$PROJECT_DIR$/DoverAreaSchoolDistrictApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/DoverAreaSchoolDistrictApp(MyFork).iml" filepath="$PROJECT_DIR$/DoverAreaSchoolDistrictApp(MyFork).iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
