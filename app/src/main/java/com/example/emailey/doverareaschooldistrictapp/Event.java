@@ -62,5 +62,4 @@ class Event {
         this.title = title;
         this.date = date;
     }
-
 }
