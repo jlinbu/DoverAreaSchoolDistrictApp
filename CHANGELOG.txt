@@ -40,3 +40,11 @@ Multiple Webviews to browse the district website and it's various tabs
 v0.0.4 - 5/19/17
 CalendarFragment is complete with a progress bar to wait until all iCalendars are loaded before displaying events.
 Lunch menu is fixed, earlier stream was missing the image file from the git repository.
+
+v0.1.0 - 12/5/17
+Bump in version number to reflect change in dev team. Still in alpha pre-release.
+
+v0.1.1 - 12/6/17
+Added two new java classes: Events.java and FilterConditions.java
+Began work on filteredarray method to pull information from events and place them into arrays
+Began work on Filter UI.
