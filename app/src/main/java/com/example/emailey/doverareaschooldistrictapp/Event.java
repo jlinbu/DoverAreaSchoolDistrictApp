@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Dictionary;
 
 /**
  * Created by tsengia on 5/4/2017.
@@ -17,6 +18,7 @@ class Event {
     private Date endDate; //ending date of the event
     private String description = "This is an example description for a calendar event.";
     private int eventColor = Color.RED; // This will be the background color of the event bubble when viewed on the calendar
+    public Dictionary dictionaryEvent;
 
     public String getTitle() {
         return title;
@@ -28,10 +30,12 @@ class Event {
 
     public void setEventColor(int color) {
         this.eventColor = color;
+        dictionaryEvent.put("school", color);
     }
 
     public void setTitle(String title) {
         this.title = title;
+        dictionaryEvent.put("title", title);
     }
 
     public String getDescription() {
@@ -40,6 +44,7 @@ class Event {
 
     public void setDescription(String description) {
         this.description = description;
+        dictionaryEvent.put("desc", description);
     }
 
     public Date getDate() {
@@ -48,7 +53,9 @@ class Event {
 
     public void setDate(Date date) {
         this.date = date;
+        dictionaryEvent.put("sDate", date);
     }
+
 
     public Date getEndDate() {
         return this.endDate;
@@ -56,6 +63,7 @@ class Event {
 
     public void setEndDate(Date ending) {
         this.endDate = ending;
+        dictionaryEvent.put("eDate", ending);
     }
 
     public Event(String title, Date date) { // Title and starting date is needed in this constructor

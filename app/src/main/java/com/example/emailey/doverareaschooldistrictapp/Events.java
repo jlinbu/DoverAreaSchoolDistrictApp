@@ -28,14 +28,17 @@ public class Events {
         return  mEvents;
     }
 
-    public ArrayList<Event> getFilteredArray(){
+    public ArrayList<Event> getFilteredArray(String filter, Object data){
         ArrayList<Event> filteredArray = new ArrayList<>();
         if (mEvents == null){
             mEvents = new ArrayList<>();
         }
         for (Event e :mEvents){
+            if (e.dictionaryEvent.get(filter).equals(data));
 
         }
         return  filteredArray;
     }
+
 }
+

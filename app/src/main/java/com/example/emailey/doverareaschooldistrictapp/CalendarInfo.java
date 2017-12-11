@@ -9,6 +9,8 @@ import android.graphics.Color;
  * Information such as url, name, and the color its events will be highlighted with.
  */
 
+ // Oh no
+
 public class CalendarInfo {
     private String name = "Default";
     private String url = "http://github.com";

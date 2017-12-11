@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -213,7 +214,6 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.calendar_fragment, container, false);
-
         //Below we are creating the manifest for all of the CalendarInfo objects and adding in all of the Calendars
         CalendarManifest.manifest.clear();
         CalendarManifest.manifest.add(new CalendarInfo(getString(R.string.district_calendar), Color.RED, "District Calendar"));

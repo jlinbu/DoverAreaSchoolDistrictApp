@@ -9,7 +9,5 @@ import java.util.List;
  */
 
 public class FilterConditions {
-    public FilterConditions(){
-        List<String> list = new ArrayList<>();
-    }
+
 }
