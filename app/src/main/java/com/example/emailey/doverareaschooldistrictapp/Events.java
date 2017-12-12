@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 public class Events {
     private static ArrayList<Event>mEvents;
+    private static ArrayList<Event>fEvents;
     private Events(){
         mEvents = new ArrayList<>();
+    }
+    private void FilteredEvents(){
+        fEvents = new ArrayList<>();
     }
 
     public static void addEvent(Event e){
@@ -35,10 +39,9 @@ public class Events {
         }
         for (Event e :mEvents){
             if (e.dictionaryEvent.get(filter).equals(data));
-
+        //    fEvents.add()
         }
         return  filteredArray;
     }
-
 }
 
