@@ -48,3 +48,6 @@ Fri, May 18, 2017 (Brayden)
  have completed my objectives and can help the rest of the group in their areas if necessary. I find that I made adequate progress during our work period, and that everyone else did so as well. I'd say that, given our short amount of time that we had, we accomplished
  a lot during our work period, likely due to having 3 people capable of working on it at once. As expected, however, there is plenty of room for new content to be added to the application, such as push notifications, the day's lunch being displayed on the main menu, an
  autofill system with a passcode for Skyward, etc. 
+
+Friday, December 8th, 2017 (Sebastian)
+ The main focus of my role in the project is to create the filter function for the calander, so that is what most of my efforts have been towards. Getting the rough idea of how to build a function that filters the events has taken a little while, but after some consultation with Linburg, we were able to figure out roughly how to do it. Working around the previous group's code is proving to be difficult, as I have to use what they've already written and plan my methods around them. The development process has been steady, though, and hopefully once I start implementing the more in-depth logic for the methods and classes I've created, I'll be able to avoid making errors.

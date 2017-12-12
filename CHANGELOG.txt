@@ -48,3 +48,8 @@ v0.1.1 - 12/6/17
 Added two new java classes: Events.java and FilterConditions.java
 Began work on filteredarray method to pull information from events and place them into arrays
 Began work on Filter UI.
+
+v0.1.2 - 12/8/17
+Created a dictionary array to store event data
+Implemented a button to activate the Filter menu
+Began work on the method for searching based on information
