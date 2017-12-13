@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Events {
     private static ArrayList<Event>mEvents;
-    private static ArrayList<Event>fEvents;
+    private static ArrayList<String>fEvents;
     private Events(){
         mEvents = new ArrayList<>();
     }
@@ -39,7 +39,7 @@ public class Events {
         }
         for (Event e :mEvents){
             if (e.dictionaryEvent.get(filter).equals(data));
-        //    fEvents.add()
+            fEvents.add(data.toString());
         }
         return  filteredArray;
     }
