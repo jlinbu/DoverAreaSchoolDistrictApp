@@ -63,3 +63,7 @@ v0.1.4 - 12/15/17
 Filter events placed on hiatus
 Began work on implementing an event fragment to display menu once event is tapped
 Began work on changing events to support new event fragment
+
+v0.1.5 - 12/20/17
+Alert Dialogue Constructed
+onClick View for specific events created
