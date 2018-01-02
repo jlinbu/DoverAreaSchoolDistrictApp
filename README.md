@@ -22,6 +22,7 @@ If ran, you should be brought to a homepage with the Dover logo and a toolbar al
 ## Deployment
 You can build and run the application by following these instructions.
 https://developer.android.com/studio/run/index.html
+
 If you're not using Android Studio, you may have to look online for a method to build and run the application.
 ## Contributing
 If you'd like to contribute to the app, you can submit push requests to us.
@@ -36,4 +37,5 @@ Sebastian Hunt - Primary Programmer, second app team.
 This project is licensed under nothing.
 ## Acknowledgments
 Our CSA Teacher, Linburg, for coding support.
+
 Connor Speir for moral support.
