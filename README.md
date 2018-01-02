@@ -29,10 +29,9 @@ https://github.com/jlinbu/DoverAreaSchoolDistrictApp
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the changelog included in this application.
 ## Authors
-Tyler Sengia - Primary Programmer
-Eammon Mailey - Primary Programmer
-Brayden Motter - Primary Programmer
-Sebastian Hunt - Secondary Programmer
+Tyler Sengia, Eammon Mailey and Brayden Motter - Primary Programmers, initial app team.
+
+Sebastian Hunt - Primary Programmer, second app team.
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 ## Acknowledgments
