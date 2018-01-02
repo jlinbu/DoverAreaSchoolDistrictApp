@@ -19,7 +19,22 @@ Select the Dover App's file, and click "Open"
 Once the project has finished opening, you're finished the installation process.
 You can either view the code or click the "Run" button (or its equivelant) to view the app as it is.
 If ran, you should be brought to a homepage with the Dover logo and a toolbar along the top.
-## Running the tests
-
-
-*work in progress*
+## Deployment
+You can build and run the application by following these instructions.
+https://developer.android.com/studio/run/index.html
+If you're not using Android Studio, you may have to look online for a method to build and run the application.
+## Contributing
+If you'd like to contribute to the app, you can submit push requests to us.
+https://github.com/jlinbu/DoverAreaSchoolDistrictApp
+## Versioning
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the changelog included in this application.
+## Authors
+Tyler Sengia - Primary Programmer
+Eammon Mailey - Primary Programmer
+Brayden Motter - Primary Programmer
+Sebastian Hunt - Secondary Programmer
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+## Acknowledgments
+Our CSA Teacher, Linburg, for coding support.
+Connor Speir for moral support.
