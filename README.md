@@ -33,7 +33,7 @@ Tyler Sengia, Eammon Mailey and Brayden Motter - Primary Programmers, initial ap
 
 Sebastian Hunt - Primary Programmer, second app team.
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under nothing.
 ## Acknowledgments
 Our CSA Teacher, Linburg, for coding support.
 Connor Speir for moral support.
